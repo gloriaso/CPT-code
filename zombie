@@ -1,8 +1,18 @@
 import arcade
+import random
 
 
 WIDTH = 640
 HEIGHT = 480
+
+zombie_x = []
+zombie_y = []
+
+for i in range(3):
+    x = random.randrange(50, WIDTH - 50,50)
+    y = HEIGHT - 50
+    zombie_x.append(x)
+    zombie_y.append(y)
 
 
 def setup():
@@ -21,14 +31,20 @@ def setup():
 
 
 def update(delta_time):
-    pass
+    global zombie_y, zombie_x
+
+    for index in range(len(zombie_y)):
+        zombie_y[index] -= 1
+        if zombie_y[index] < 0:
+            zombie_y[index] = HEIGHT
+
 
 
 def on_draw():
     arcade.start_render()
     # Draw in here...
-    for x in range(25,WIDTH - 25,100):
-        draw_zombie(x,460)
+    for x,y in zip(zombie_x,zombie_y):
+        draw_zombie(x,y)
 
 
 def on_key_press(key, modifiers):
@@ -49,10 +65,10 @@ def draw_zombie(x,y):
     # arcade.draw_rectangle_filled(310,180,10,10,arcade.color.LIGHT_MOSS_GREEN)
     # arcade.draw_rectangle_filled(330,180,10,10,arcade.color.LIGHT_MOSS_GREEN)
 
-    arcade.draw_rectangle_filled(x,y,30,30,arcade.color.LIGHT_MOSS_GREEN)
+    arcade.draw_rectangle_filled(x,y,30,30,arcade.color.MOSS_GREEN)
     arcade.draw_rectangle_filled(x,y-35,30,40,arcade.color.SAND)
-    arcade.draw_rectangle_filled(x-10,y-60,10,10,arcade.color.LIGHT_MOSS_GREEN)
-    arcade.draw_rectangle_filled(x+10,y-60,10,10,arcade.color.LIGHT_MOSS_GREEN)
+    arcade.draw_rectangle_filled(x-10,y-60,10,10,arcade.color.MOSS_GREEN)
+    arcade.draw_rectangle_filled(x+10,y-60,10,10,arcade.color.MOSS_GREEN)
 
 if __name__ == '__main__':
     setup()
