@@ -2,15 +2,17 @@ import arcade
 import random
 
 
-WIDTH = 640
-HEIGHT = 480
+WIDTH = 500
+HEIGHT = 650
 
 zombie_x = []
 zombie_y = []
 
-for i in range(3):
-    x = random.randrange(50, WIDTH - 50,50)
-    y = HEIGHT - 50
+num = 5
+
+for i in range(num):
+    x = random.randrange(25, WIDTH - 25,40)
+    y = random.randrange(HEIGHT+25,HEIGHT+250,70)
     zombie_x.append(x)
     zombie_y.append(y)
 
@@ -31,13 +33,13 @@ def setup():
 
 
 def update(delta_time):
-    global zombie_y, zombie_x
+    global zombie_y, zombie_x,num
 
     for index in range(len(zombie_y)):
-        zombie_y[index] -= 1
+        zombie_y[index] -= 5
         if zombie_y[index] < 0:
-            zombie_y[index] = HEIGHT
-
+            zombie_y[index] = random.randrange(HEIGHT+25,HEIGHT+250,70)
+            zombie_x[index] = random.randrange(25,WIDTH-25,40)
 
 
 def on_draw():
