@@ -1,0 +1,24 @@
+zombie_x = 100
+zombie_y = 70
+zombie_width = 80
+zombie_length = 80
+player_length = 60
+player_width = 60
+
+def draw():
+    global zombie_x, zombie_y, zombie_width, zombie_length, player_length, player_width
+    background(255,255,255)
+    player_x = mouseX
+    player_y = mouseY
+    fill(255,0,0)
+    rect(player_x, player_y,player_length, player_width) #player is the red box that can be moved by your mouse
+    fill(0,255,0)
+    rect(zombie_x,zombie_y,zombie_length,zombie_width) #zombie is the green box that in your program, you will generate randomly I'm assuming
+    
+    if player_x > zombie_x and (player_x + player_length) < (zombie_x + zombie_length): #if the player box is found in between the left and right sides of the zombie...
+        if player_y < zombie_y + zombie_width: #if the player box is higher up on the screen than the zombie. The above if statement can be combined with this one simply with a "and". I just split them up so it's easier to understand
+            fill(0,0,0)
+            textSize(32)
+            text("DEAD",300,200)
+    
+#Sorry I looked at your code and "import arcade" doesn't work so I just rewrote a more simplified version and maybe u'll understand. Let me know if u need more clarification or if I'm completely doing the wrong thing :)
